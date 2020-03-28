@@ -1,0 +1,43 @@
+# create collections
+
+POST/users
+POST/movies
+
+# enter movie names
+PUT/movies/movname
+
+#enter usernames
+PUT/users/usernames
+
+#create reviews and rating collections
+POST/movies/movname/reviews
+POST/movies/movname/rating
+
+#get movies list
+GET/movies
+
+#get specific movie
+GET/movies/movname
+
+#get a movie review
+GET/movies/movname/reviews
+
+#get a movie rating
+GET/movies/movname/rating
+
+#add a movie review
+PUT/movies/movname/reviews/revid
+
+#add a movie rating
+PUT/movies/movname/rating/ratingid
+
+#delete a movie review
+DELETE/movies/movname/reviews/revid
+
+#delete a movie rating
+DELETE/movies/movname/rating/ratingid
+
+#delete a movie
+DELETE/movies/movname
+
+

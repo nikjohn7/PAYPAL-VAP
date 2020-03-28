@@ -1,0 +1,22 @@
+{
+  "name": "paypal-vap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node vapday3.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "csv": "^5.3.1",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "nodemon": "^2.0.2",
+    "pug": "^2.0.4",
+    "string-format": "git+https://github.com/davidchambers/string-format.git"
+  }
+}

@@ -1,0 +1,94 @@
+html
+    body(style="background: url(https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=967&q=80) no-repeat center center fixed;  -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;")
+        div.container
+            div.row
+                div
+                    form(action="/home", method="post")
+                        input(type='text' name='auth_token' value=auth_token hidden)
+                        input(type="submit", value="Back", style="float: left; background-color:green; border-color:blue;")
+                div
+                    form(action="/logout", method="post")
+                        input(type='text' name='auth_token' value=auth_token hidden)
+                        input(type="submit", value="Logout", style="float: right; background-color:paleturquoise; border-color:blue;")
+            div
+                h1 
+                    center 
+                        span(style="font-size:200%; font-family:Verdana; color: darkblue") Novissimo
+                center
+                    span(style='color: red') #{message}
+                    div
+                        h2 #{description} (#{courseID})
+                        table(style="padding:10px;")
+                            tr
+                                td
+                                    span <b>Professors Taking The Course
+                                td
+                                    span #{courseProfs}
+                            tr
+                                td
+                                    span <b>Start Date
+                                td
+                                    span #{courseStartDate}
+                            tr
+                                td
+                                    span <b>Status
+                                td
+                                    span #{status}
+                            tr
+                                td
+                                    span <b>Number of enrollments
+                                td
+                                    span #{numberRegistered}
+                            tr
+                                td
+                                    span <b>Faculty
+                                if registeredStudents
+                                    each arr, index in registeredStudents
+                                        td
+                                            span #{index}
+                                        td
+                            tr
+                                td
+                                    span <b>Students
+                                if registeredStudents
+                                    each arr, index in registeredStudents
+                                        td
+                                            each val in arr
+                                                span #{val} ||
+                                        td  
+                        if level == 1
+                            if registeredFaculty
+                                form(action="/delcourse", method="post")
+                                    input(value=auth_token name="auth_token" hidden)
+                                    input(value=courseID name="courseID" hidden)
+                                    input(value=courseProfs name="courseProfs" hidden)
+                                    input(type="submit", value="Delete Course")
+                            else
+                                unless courseBegan
+                                    form(action="/teachcourse", method="post")
+                                        input(value=auth_token name="auth_token" hidden)
+                                        input(value=courseID name="courseID" hidden)
+                                        input(type="submit", value="Teach This Course")
+                        else 
+                            unless courseBegan
+                                if enrolled
+                                    table(style="padding:10px;")
+                                        tr
+                                            td 
+                                                span <b>Your Faculty 
+                                            td
+                                                span #{yourProf}
+
+                                    form(action="/dropcourse", method="post")
+                                        input(value=auth_token name="auth_token" hidden)
+                                        input(value=courseID name="courseID" hidden)
+                                        input(type="submit", value="Drop the course ")
+                                else
+                                        form(action="/enroll", method="post")
+                                            input(value=auth_token name="auth_token" hidden)
+                                            input(value=courseID name="courseID" hidden)
+                                            select(name="prof")
+                                                option(disabled selected) Select a professor
+                                                    each professor in courseProfs
+                                                        option(value=professor) #{professor}
+                                            input(type="submit", value="Enroll To The Course")

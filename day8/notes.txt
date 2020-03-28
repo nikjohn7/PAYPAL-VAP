@@ -1,0 +1,5 @@
+AUTHENTICATION
+
+basic auth
+OAuth 2.0
+JSON web token
